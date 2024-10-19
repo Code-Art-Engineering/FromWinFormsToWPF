@@ -1,0 +1,11 @@
+﻿<!-- Styles/ThemeColors.xaml -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Define color brushes -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="#FF4500"/>
+    <!-- OrangeRed -->
+    <SolidColorBrush x:Key="SecondaryBrush" Color="#4682B4"/>
+    <!-- SteelBlue -->
+
+</ResourceDictionary>

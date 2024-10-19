@@ -1,0 +1,24 @@
+﻿<Window x:Class="WPFStyle.ResourceDictionary"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFStyle"
+        mc:Ignorable="d"
+        Title="ResourceDictionary" Height="153" Width="265">
+    <Window.Resources>
+        <ResourceDictionary>
+            <!-- Defining color resources -->
+            <SolidColorBrush x:Key="PrimaryBrush" Color="#FF4500"/>
+            <!-- OrangeRed -->
+            <SolidColorBrush x:Key="SecondaryBrush" Color="#4682B4"/>
+            <!-- SteelBlue -->
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Applying the defined resources -->
+        <TextBlock Text="Hello, World!" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,31,0,0" Height="40" Width="80" />
+        <Button Content="Click Me" Background="{StaticResource SecondaryBrush}" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="105,11,0,0" />
+    </Grid>
+</Window>

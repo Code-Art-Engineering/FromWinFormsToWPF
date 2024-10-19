@@ -1,0 +1,23 @@
+﻿<Window x:Class="WPFStyle.ControlTemplate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Control Template Example" Height="200" Width="300">
+
+    <Window.Resources>
+        <!-- Define a custom control template for a round button -->
+        <ControlTemplate x:Key="RoundButton" TargetType="Button">
+            <Grid>
+                <!-- Ellipse for button background -->
+                <Ellipse Fill="{TemplateBinding Background}"/>
+
+                <!-- Display the button content (text) in the center -->
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Apply the custom control template to the button -->
+        <Button Content="Click Me!" Width="100" Height="100" Background="LightBlue" Template="{StaticResource RoundButton}"/>
+    </Grid>
+</Window>

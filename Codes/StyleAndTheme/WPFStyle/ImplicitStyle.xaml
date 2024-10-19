@@ -1,0 +1,23 @@
+﻿<Window x:Class="WPFStyle.ImplicitStyle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFStyle"
+        mc:Ignorable="d"
+        Title="ImplicitStyle" Height="274" Width="418">
+    <Window.Resources>
+        <!-- Implicit style that applies to all Button controls in the window -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="Foreground" Value="Navy"/>
+            <Setter Property="Padding" Value="10,5"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- No need to explicitly reference the style -->
+        <Button Content="Button 1" Width="100" Height="25" Margin="41,29,277,204" />
+        <Button Content="Button 2" Width="100" Height="25" Margin="159,29,159,204" />
+    </Grid>
+</Window>
