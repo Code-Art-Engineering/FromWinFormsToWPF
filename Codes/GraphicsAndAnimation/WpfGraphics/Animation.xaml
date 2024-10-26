@@ -1,0 +1,128 @@
+﻿<Window x:Class="WpfGraphics.Animation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfGraphics"
+        mc:Ignorable="d"
+        Title="Animation" Height="650" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Double Animation -->
+        <Rectangle Width="100" Height="100" Fill="Blue">
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Rectangle.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                        Storyboard.TargetProperty="Width"
+                        From="100" To="200" Duration="0:0:2" 
+                        AutoReverse="True" RepeatBehavior="Forever"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>
+
+        <!-- Color Animation -->
+        <Rectangle Width="150" Height="150" Grid.Column="1">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="Blue"/>
+            </Rectangle.Fill>
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Rectangle.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation 
+                        Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)"
+                        From="Blue" To="Green" Duration="0:0:3" 
+                        AutoReverse="True" RepeatBehavior="Forever"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>
+
+        <!-- Point Animation -->
+        <Canvas Width="300" Height="200" Grid.Row="1">
+            <Path Stroke="Black" StrokeThickness="2">
+                <Path.Data>
+                    <LineGeometry x:Name="AnimatedLine" StartPoint="50,50" EndPoint="50,50"/>
+                </Path.Data>
+                <Path.Triggers>
+                    <EventTrigger RoutedEvent="Path.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <PointAnimation
+                            Storyboard.TargetProperty="(Path.Data).(LineGeometry.EndPoint)"
+                            To="250,180" Duration="0:0:2" 
+                            AutoReverse="True" RepeatBehavior="Forever"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Path.Triggers>
+            </Path>
+        </Canvas>
+
+        <!-- Key Frame Animation -->
+        <Rectangle x:Name="AnimatedRectangle" Width="50" Height="50" Fill="Blue" Grid.Row="1" Grid.Column="1" >
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Rectangle.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width">
+                                <!-- Smooth transition to 100 -->
+                                <LinearDoubleKeyFrame Value="100" KeyTime="0:0:1"/>
+                                <!-- Instant jump to 200 -->
+                                <DiscreteDoubleKeyFrame Value="200" KeyTime="0:0:2"/>
+                                <!-- Eased transition back to 50 -->
+                                <SplineDoubleKeyFrame Value="50" KeyTime="0:0:3" KeySpline="0.5,0 0.5,1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>
+
+        <!-- Easing Function -->
+        <Canvas Width="600" Height="200" Grid.Row="2" Grid.ColumnSpan="2" >
+            <!-- Rectangle that will be animated across the canvas -->
+            <Rectangle Width="50" Height="50" Fill="Blue" HorizontalAlignment="Center" Canvas.Top="75" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TranslateTransform x:Name="AnimatedTransform" />
+                </Rectangle.RenderTransform>
+
+                <Rectangle.Triggers>
+                    <EventTrigger RoutedEvent="Rectangle.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                <!-- Animate the X position using TranslateTransform with ElasticEase -->
+                                <DoubleAnimation Storyboard.TargetName="AnimatedTransform"
+                                             Storyboard.TargetProperty="X"
+                                             From="0" To="550" Duration="0:0:3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <ElasticEase EasingMode="EaseOut" Oscillations="3" Springiness="2"/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Rectangle.Triggers>
+            </Rectangle>
+        </Canvas>
+        <Label Content="Double Animation" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Color Animation" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Point Animation" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Content="Key Frame Animation" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+        <Label Content="Easing Function Animation" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+    </Grid>
+</Window>

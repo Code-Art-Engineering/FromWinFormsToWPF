@@ -1,0 +1,61 @@
+﻿<Window x:Class="WpfGraphics.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfGraphics"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <!-- Draw a house -->
+        <Canvas>
+            <!-- House Body -->
+            <Rectangle Canvas.Left="50" Canvas.Top="150" Width="200" Height="150" Stroke="Black" StrokeThickness="2"/>
+
+            <!-- Door -->
+            <Rectangle Canvas.Left="100" Canvas.Top="200" Width="50" Height="100" Stroke="Black" StrokeThickness="2"/>
+
+            <!-- Window -->
+            <Rectangle Canvas.Left="160" Canvas.Top="180" Width="40" Height="40" Stroke="Black" StrokeThickness="2" Fill="LightBlue"/>
+
+            <!-- Roof -->
+            <Polygon Stroke="Black" StrokeThickness="2" Fill="Transparent"
+             Points="50,150 150,100 250,150"/>
+        </Canvas>
+        
+        <!-- 3D Graphics -->
+        <Viewport3D Margin="279,27,236,149">
+            <!-- Define a camera for the 3D scene -->
+            <Viewport3D.Camera>
+                <PerspectiveCamera Position="2 2 3" LookDirection="-2 -2 -3" UpDirection="0 1 0" FieldOfView="45"/>
+            </Viewport3D.Camera>
+
+            <!-- Define a light to illuminate the 3D object -->
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <DirectionalLight Color="White" Direction="-1,-1,-1" />
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+
+            <!-- Define the 3D object -->
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <GeometryModel3D>
+                        <!-- Define the geometry of the 3D object -->
+                        <GeometryModel3D.Geometry>
+                            <MeshGeometry3D 
+                        Positions="0 0 0  1 0 0  0 1 0  1 1 0" 
+                        TriangleIndices="0 1 2  1 3 2"/>
+                        </GeometryModel3D.Geometry>
+
+                        <!-- Define the material of the 3D object -->
+                        <GeometryModel3D.Material>
+                            <DiffuseMaterial Brush="Blue"/>
+                        </GeometryModel3D.Material>
+                    </GeometryModel3D>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+        </Viewport3D>
+
+    </Grid>
+</Window>
