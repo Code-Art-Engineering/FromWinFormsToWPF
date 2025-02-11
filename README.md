@@ -8,4 +8,4 @@ Are you a WinForms developer ready to embrace the future with WPF? Or are you a 
 
 This comprehensive guide will help you navigate the key differences between WinForms and WPF, while equipping you with the knowledge to build, maintain, and optimize applications using either platform. With clear explanations and practical examples, this book bridges the gap for developers who need a deep understanding of both technologies.
 
-**Link to EBook:** [From WinForm to WPF](https://payhip.com/b/sGfTV)
+**Link to EBook:** [From WinForm to WPF](https://leanpub.com/fromwinformtowpf)
